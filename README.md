@@ -1,6 +1,13 @@
 # guess-mine
 Realtime Drawing Game built with SocketIO, Gulp and NodeJS
 
+## To Do:
+
+- [x] Server
+- [x] Pug
+- [x] Static
+- [ ] SocketIO
+
 ## nodemon
 ```
 yarn add nodemon
@@ -16,9 +23,14 @@ yarn add express
 yarn add socket.io
 ```
 
-##babel/node
+##babel
 ```
 yarn add @babel/node
 yarn add @babel/core
 yarn add @babel/preset-env
+```
+
+##pug
+```
+yarn add pug
 ```
