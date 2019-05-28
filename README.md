@@ -34,3 +34,23 @@ yarn add @babel/preset-env
 ```
 yarn add pug
 ```
+
+##eslint
+```
+yarn add eslint
+```
+
+##eslint
+```
+yarn add eslint-config-prettier -D
+yarn add eslint-plugin-prettier -D
+yarn add prettier -D
+```
+
+##Install vscode extenstion ESLint
+
+##How to kill nodeJS server
+```
+netstat -ano | find "LISTENING" | find "Port Number"
+taskkill /pid *****
+```

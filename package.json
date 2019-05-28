@@ -9,6 +9,7 @@
     "@babel/core": "^7.4.5",
     "@babel/node": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
+    "exlint": "^0.1.6",
     "express": "^4.17.1",
     "nodemon": "^1.19.1",
     "pug": "^2.0.3",
@@ -16,5 +17,16 @@
   },
   "scripts": {
     "dev:server": "nodemon --exec babel-node src/server"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "prettier": "1.17.1"
   }
 }
