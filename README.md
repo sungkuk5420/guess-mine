@@ -28,6 +28,7 @@ yarn add socket.io
 yarn add @babel/node
 yarn add @babel/core
 yarn add @babel/preset-env
+yarn add @babel/preset-es2015 -D
 ```
 
 ##pug
@@ -67,4 +68,15 @@ yarn add gulp-sass
 yarn add node-sass
 yarn add gulp-autoprefixer
 yarn add gulp-csso
+yarn add gulp-browserify
+```
+
+##del
+```
+yarn add del
+```
+
+##babelify
+```
+yarn add babelify
 ```
