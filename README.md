@@ -7,7 +7,7 @@ Realtime Drawing Game built with SocketIO, Gulp and NodeJS
 - [x] Pug
 - [x] Static
 - [x] SocketIO
-
+yar
 ## nodemon
 ```
 yarn add nodemon
@@ -58,4 +58,13 @@ taskkill /pid *****
 ##morgan
 ```
 yarn add morgan
+```
+
+##gulp
+```
+yarn add gulp
+yarn add gulp-sass
+yarn add node-sass
+yarn add gulp-autoprefixer
+yarn add gulp-csso
 ```

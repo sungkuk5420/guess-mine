@@ -11,13 +11,18 @@
     "@babel/preset-env": "^7.4.5",
     "exlint": "^0.1.6",
     "express": "^4.17.1",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^6.1.0",
+    "gulp-csso": "^3.0.1",
+    "gulp-sass": "^4.0.2",
     "morgan": "^1.9.1",
     "nodemon": "^1.19.1",
     "pug": "^2.0.3",
     "socket.io": "^2.2.0"
   },
   "scripts": {
-    "dev:server": "nodemon --exec babel-node src/server"
+    "dev:server": "nodemon --exec babel-node src/server",
+    "dev:assets": "gulp"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
