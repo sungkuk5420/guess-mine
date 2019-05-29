@@ -6,7 +6,7 @@ Realtime Drawing Game built with SocketIO, Gulp and NodeJS
 - [x] Server
 - [x] Pug
 - [x] Static
-- [ ] SocketIO
+- [x] SocketIO
 
 ## nodemon
 ```
@@ -53,4 +53,9 @@ yarn add prettier -D
 ```
 netstat -ano | find "LISTENING" | find "Port Number"
 taskkill /pid *****
+```
+
+##morgan
+```
+yarn add morgan
 ```
