@@ -30,17 +30,18 @@ export const handleGameStarted = () => {
   disableCanvas();
   hideControls();
   enableChat();
+  notifs.innerText = `출제자가 문제를 내고 있습니다. 정답을 맞춰보아요.`;
 };
 export const handleLeaderNotif = ({ word }) => {
   enableCanvas();
   showControls();
-  disableChat();
-  notifs.innerText = `You are the leader, paint: ${word}`;
+  enableChat();
+  notifs.innerText = `당신은 출제자입니다. 답: ${word}`;
 };
 export const handleGameEnded = () => {
-  setNotifs("Game ended.");
+  setNotifs("게임 끝.");
   disableCanvas();
   hideControls();
   resetCanvas();
 };
-export const handleGameStarting = () => setNotifs("Game will start soon");
+export const handleGameStarting = () => setNotifs("곧 게임이 시작됩니다.");
