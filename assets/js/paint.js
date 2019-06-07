@@ -160,6 +160,7 @@ export const disableCanvas = () => {
   canvas.removeEventListener("mouseleave", stopPainting);
   canvas.removeEventListener("click", handleCanvasClick);
 
+  canvas.removeEventListener("touchmove", onMouseMove);
   canvas.removeEventListener("touchstart", startPainting);
   canvas.removeEventListener("touchend", stopPainting);
   canvas.removeEventListener("touchleave", stopPainting);
@@ -173,6 +174,7 @@ export const enableCanvas = () => {
   canvas.addEventListener("mouseleave", stopPainting);
   canvas.addEventListener("click", handleCanvasClick);
 
+  canvas.addEventListener("touchmove", onMouseMove);
   canvas.addEventListener("touchstart", startPainting);
   canvas.addEventListener("touchend", stopPainting);
   canvas.addEventListener("touchleave", stopPainting);
