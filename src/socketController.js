@@ -81,12 +81,13 @@ const socketController = (socket, io) => {
     }
   });
 
-  socket.on(events.beginPath, ({ x, y }) =>
-    broadcast(events.beganPath, { x, y })
+  socket.on(events.beginPath, ({ x, y, width, height }) =>
+    broadcast(events.beganPath, { x, y, width, height })
   );
 
-  socket.on(events.strokePath, ({ x, y, color }) => {
-    broadcast(events.strokedPath, { x, y, color });
+  socket.on(events.strokePath, ({ x, y, width, height, color }) => {
+    console.log(x, y);
+    broadcast(events.strokedPath, { x, y, width, height, color });
   });
 
   socket.on(events.fill, ({ color }) => {
