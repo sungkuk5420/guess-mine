@@ -37,6 +37,7 @@ const startPainting = () => {
   ctx.beginPath();
   if(event.type === 'touchstart'){
     onMouseMove(event);
+    sendMsg.blur();
   }
   if (!filling) {
     painting = true;
