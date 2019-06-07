@@ -16,8 +16,8 @@ setTimeout(() => {
   canvas.height = smallSize;
   main.style.width = smallSize + "px";
   main.style.height = smallSize + "px";
-  chat.style.height = "calc(100% - "+(smallSize+142) + "px)";
-  sendMsg.style.top = smallSize/2 + "px";
+  chat.style.height = "calc(100% - "+(smallSize+20) + "px)";
+  sendMsg.style.top = (smallSize-20) + "px";
 }, 100);
 ctx.fillStyle = "white";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
