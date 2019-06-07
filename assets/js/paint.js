@@ -4,6 +4,7 @@ const canvas = document.getElementById("jsCanvas");
 const controls = document.getElementById("jsControls");
 const main = document.getElementById("jsMain");
 const chat = document.getElementById("jsChat");
+const sendMsg = document.getElementById("jsSendMsg");
 const ctx = canvas.getContext("2d");
 const colors = document.getElementsByClassName("jsColor");
 const mode = document.getElementById("jsMode");
@@ -15,7 +16,8 @@ setTimeout(() => {
   canvas.height = smallSize;
   main.style.width = smallSize + "px";
   main.style.height = smallSize + "px";
-  chat.style.height = "calc(100% - "+(smallSize+20) + "px)";
+  chat.style.height = "calc(100% - "+(smallSize+142) + "px)";
+  sendMsg.style.top = smallSize/2 + "px";
 }, 100);
 ctx.fillStyle = "white";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
