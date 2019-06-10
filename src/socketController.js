@@ -14,28 +14,30 @@ const socketController = (socket, io) => {
   const superBroadcast = (event, data) => io.emit(event, data);
   const sendPlayerUpdate = () =>
     superBroadcast(events.playerUpdate, { sockets });
-  const startGame = () => {
+  const startGame = (count) => {
     if (sockets.length > 1) {
       if (inProgress === false) {
         inProgress = true;
         leader = chooseLeader();
         word = chooseWord();
-        superBroadcast(events.gameStarting);
+        superBroadcast(events.gameStarting, { count });
         setTimeout(() => {
           superBroadcast(events.gameStarted);
           io.to(leader.id).emit(events.leaderNotif, { word });
-          timeout = setTimeout(endGame, 30000);
-        }, 5000);
+          timeout = setTimeout(endGame, 60000);
+        }, 1000 * (count+1));
       }
     }
   };
   const endGame = () => {
     inProgress = false;
-    superBroadcast(events.gameEnded);
+    superBroadcast(events.gameEnded, { word });
     if (timeout !== null) {
       clearTimeout(timeout);
     }
-    setTimeout(() => startGame(), 2000);
+    setTimeout(() => {
+      startGame(3)
+    }, 5000);
   };
   const addPoints = id => {
     sockets = sockets.map(socket => {
@@ -53,7 +55,7 @@ const socketController = (socket, io) => {
     sockets.push({ id: socket.id, points: 0, nickname: nickname });
     broadcast(events.newUser, { nickname });
     sendPlayerUpdate();
-    startGame();
+    startGame(5);
   });
 
   socket.on(events.disconnect, () => {
@@ -86,7 +88,6 @@ const socketController = (socket, io) => {
   );
 
   socket.on(events.strokePath, ({ x, y, width, height, color }) => {
-    console.log(x, y);
     broadcast(events.strokedPath, { x, y, width, height, color });
   });
 
