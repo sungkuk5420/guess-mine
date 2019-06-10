@@ -22,7 +22,7 @@ const socketController = (socket, io) => {
         word = chooseWord();
         superBroadcast(events.gameStarting, { count });
         setTimeout(() => {
-          superBroadcast(events.gameStarted);
+          superBroadcast(events.gameStarted, { leader : leader.nickname });
           io.to(leader.id).emit(events.leaderNotif, { word });
           timeout = setTimeout(endGame, 60000);
         }, 1000 * (count+1));

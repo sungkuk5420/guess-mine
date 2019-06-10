@@ -25,13 +25,13 @@ const setNotifs = text => {
 };
 
 export const handlePlayerUpdate = ({ sockets }) => addPlayers(sockets);
-export const handleGameStarted = () => {
+export const handleGameStarted = ({leader}) => {
   setNotifs("");
   disableCanvas();
   hideControls();
   enableChat();
   resetCanvas();
-  notifs.innerText = `출제자가 문제를 내고 있습니다. 정답을 맞춰보아요.`;
+  notifs.innerText = `${leader}(이)가 문제를 내고 있습니다. 정답을 맞춰보아요.`;
 };
 export const handleLeaderNotif = ({ word }) => {
   enableCanvas();
