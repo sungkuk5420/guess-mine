@@ -5,7 +5,7 @@ import "./paint";
 
 document.addEventListener('DOMContentLoaded', function(){ 
   setPlatformInfo();
-  var inputBox = document.querySelector('.safari #inputBox');
+  var inputBox = document.querySelector('.safari #jsSendMsg input');
   if(inputBox) {
       inputBox.addEventListener('focus', function(e) {
       document.body.classList.add('keyboard');

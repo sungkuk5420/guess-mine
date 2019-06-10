@@ -149,7 +149,7 @@
       .chat__form{
         top:auto;
         position: absolute;
-        bottom:0;
+        bottom:70px;
         left: 10px;
         right: 10px;
         margin: auto;
@@ -159,10 +159,10 @@
       }
     }
     
-  .player__board {
-    grid-template-columns: 1fr 1fr 1fr 1fr !important;
-    margin-bottom:10px;
-  }
+    .player__board {
+      grid-template-columns: 1fr 1fr 1fr 1fr !important;
+      margin-bottom:10px;
+    }
   }
   
 }
