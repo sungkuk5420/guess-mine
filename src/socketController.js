@@ -136,7 +136,7 @@ const socketController = (socket, io) => {
   });
 
   socket.on(events.sendMsg, ({ message }) => {
-    if (message === word) {
+    if((socket.id !== leader.id) && (message === word)) {
       superBroadcast(events.newMsg, {
         message: `승자는 ${socket.nickname}입니다. 답: ${word}`,
         nickname: "안내봇"
