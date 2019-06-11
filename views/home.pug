@@ -39,7 +39,7 @@ html(lang="en")
                 ul.chat__messages#jsMessages
                 form.chat__form#jsSendMsg
                     input(placeholder="정답은 여기에 입력해주세요.", type="text")
-            
+                button.reset__nickname#jsResetNickname 닉네임 변경
         script.
             window.events = !{events}
         script(src="/socket.io/socket.io.js")

@@ -58,7 +58,6 @@
         border: 0px;
         padding: 5px 7px;
         min-width: 50px;
-
         border-radius: 5px;
         font-weight: 600;
         border: 2px solid rgb(142, 142, 147);
@@ -78,6 +77,24 @@
   .notifs2,
   .notifs3{
     display: inline;
+  }
+  .reset__nickname{
+    margin-left: 25px;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
+      0 1px 3px rgba(0, 0, 0, 0.08);
+    border: 0px;
+    padding: 5px 7px;
+    min-width: 50px;
+    border-radius: 5px;
+    font-weight: 600;
+    border: 2px solid rgb(142, 142, 147);
+    color: rgb(142, 142, 147);
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.1s linear;
+    &:active {
+      transform: scale(0.98);
+    }
   }
 }
 
