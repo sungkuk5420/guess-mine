@@ -9,6 +9,7 @@ import { disableChat, enableChat } from "./chat";
 
 const board = document.getElementById("jsPBoard");
 const notifs = document.getElementById("jsNotifs");
+const notifs2 = document.getElementById("jsNotifs2");
 
 const addPlayers = players => {
   board.innerHTML = "";
@@ -19,19 +20,23 @@ const addPlayers = players => {
   });
 };
 
-const setNotifs = text => {
+export const handleAllNotif = text => {
   notifs.innerText = "";
   notifs.innerText = text;
 };
 
+export const handleAllNotif2 = text => {
+  notifs2.innerText = "";
+  notifs2.innerText = text;
+};
+
 export const handlePlayerUpdate = ({ sockets }) => addPlayers(sockets);
 export const handleGameStarted = ({leader}) => {
-  setNotifs("");
   disableCanvas();
   hideControls();
   enableChat();
   resetCanvas();
-  notifs.innerText = `${leader}(이)가 문제를 내고 있습니다. 정답을 맞춰보아요.`;
+  handleAllNotif(`${leader}(이)가 문제를 내고 있습니다. 정답을 맞춰보아요.`);
 };
 export const handleLeaderNotif = ({ word }) => {
   enableCanvas();
@@ -40,7 +45,7 @@ export const handleLeaderNotif = ({ word }) => {
   notifs.innerText = `당신은 출제자입니다. 답: ${word}`;
 };
 export const handleGameEnded = ({word}) => {
-  setNotifs(`게임 끝. 답: ${word}`);
+  handleAllNotif(`게임 끝. 답: ${word}`);
   disableCanvas();
   hideControls();
 };
@@ -48,7 +53,7 @@ export const handleGameStarting = ({count}) => {
   startTimer(count);
   function startTimer(count){
     setTimeout(() => {
-      setNotifs(`곧 게임이 시작됩니다. ${count}` );
+      handleAllNotif(`곧 게임이 시작됩니다. ${count}` );
       if(count > 1){
         startTimer(count-1);
       }

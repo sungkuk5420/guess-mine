@@ -28,6 +28,9 @@ const stopPainting = () => {
 };
 
 const startPainting = () => {
+  getSocket().emit(window.events.changeGameStartingFlag, {
+    status : true
+  });
   ctx.beginPath();
   if(event.type === 'touchstart'){
     onMouseMove(event);
