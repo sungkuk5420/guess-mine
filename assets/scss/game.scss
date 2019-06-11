@@ -1,6 +1,7 @@
 .gameContainer {
   display: flex;
   width: 90%;
+  height: 90%;
   margin: 0 auto;
   justify-content: center;
   flex-wrap: wrap;
@@ -73,6 +74,10 @@
   }
   .chat {
     width: 200px;
+  }
+  .notifs2,
+  .notifs3{
+    display: inline;
   }
 }
 

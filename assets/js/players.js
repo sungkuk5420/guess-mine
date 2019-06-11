@@ -10,6 +10,7 @@ import { disableChat, enableChat } from "./chat";
 const board = document.getElementById("jsPBoard");
 const notifs = document.getElementById("jsNotifs");
 const notifs2 = document.getElementById("jsNotifs2");
+const notifs3 = document.getElementById("jsNotifs3");
 
 const addPlayers = players => {
   board.innerHTML = "";
@@ -29,6 +30,10 @@ export const handleAllNotif2 = text => {
   notifs2.innerText = "";
   notifs2.innerText = text;
 };
+export const handleAllNotif3 = text => {
+  notifs3.innerText = "";
+  notifs3.innerText = text;
+};
 
 export const handlePlayerUpdate = ({ sockets }) => addPlayers(sockets);
 export const handleGameStarted = ({leader}) => {
@@ -38,6 +43,7 @@ export const handleGameStarted = ({leader}) => {
   resetCanvas();
   handleAllNotif(`${leader}(이)가 문제를 내고 있습니다. 정답을 맞춰보아요.`);
 };
+
 export const handleLeaderNotif = ({ word }) => {
   enableCanvas();
   showControls();

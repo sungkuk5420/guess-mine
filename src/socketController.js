@@ -7,6 +7,7 @@ let word = null;
 let leader = null;
 let playingTimeout = null;// 게임을실행한후 60초
 let startCheckTimeout = null;// 동작이 없으면 종료하는 타이머 10초
+let howGameTimeout = null;// 시간초를 출력하는 타이머
 let gameStartFlag = false;
 
 const chooseLeader = () => sockets[Math.floor(Math.random() * sockets.length)];
@@ -25,7 +26,7 @@ const socketController = (socket, io) => {
         setTimeout(() => {
           superBroadcast(events.gameStarted, { leader : leader.nickname });
           io.to(leader.id).emit(events.leaderNotif, { word });
-          playingTimeout = setTimeout(endGame, 60000);
+          playingTimeout = setTimeout(endGame, 62000);
           showGameTime(60);
           gameStartCheck();
         }, 1000 * (count+1));
@@ -36,12 +37,33 @@ const socketController = (socket, io) => {
   const showGameTime = (time) => {
     showTime(time);
     function showTime(time){
-      setTimeout(() => {
+      howGameTimeout = setTimeout(() => {
         if ((playingTimeout !== null) && (time > 1)){
           superBroadcast(events.allNotif2,  `남은시간 : ${time}초`);
           showTime(time-1);
+          if(time == 30){
+            let wordSlice = word.slice(0,1);
+            let remainderWord = word.slice(1,word.length);
+            let circleText = "";
+            for (let i = 0; i <remainderWord.length; i++) {
+              circleText += "O";
+            }
+            superBroadcast(events.allNotif3,  ` [ O${circleText} ]`);
+          }
+          if(time == 15){
+            if(word.length !== 1){
+              let wordSlice = word.slice(0,1);
+              let remainderWord = word.slice(1,word.length);
+              let circleText = "";
+              for (let i = 0; i <remainderWord.length; i++) {
+                circleText += "O";
+              }
+              superBroadcast(events.allNotif3,  ` [ ${wordSlice}${circleText} ]`);
+            }
+          }
         }else{
           superBroadcast(events.allNotif2,  ``);
+          superBroadcast(events.allNotif3,  ``);
         }
       }, 1000 );
     }
@@ -57,12 +79,17 @@ const socketController = (socket, io) => {
     if (startCheckTimeout !== null) {
       clearTimeout(startCheckTimeout);
       startCheckTimeout = null;
-      superBroadcast(events.allNotif2,  ``);
     }
     if (playingTimeout !== null) {
       clearTimeout(playingTimeout);
       playingTimeout = null;
     }
+    if (howGameTimeout !== null) {
+      clearTimeout(howGameTimeout);
+      howGameTimeout = null;
+    }
+    superBroadcast(events.allNotif2,  ``);
+    superBroadcast(events.allNotif3,  ``);
     setTimeout(() => {
       startGame(start)
     }, 1000*delay);

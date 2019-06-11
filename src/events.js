@@ -19,6 +19,7 @@ const events = {
   gameStartCheck: "gameStartCheck",
   allNotif: "allNotif",
   allNotif2: "allNotif2",
+  allNotif3: "allNotif3",
   changeGameStartingFlag: "changeGameStartingFlag"
 };
 
