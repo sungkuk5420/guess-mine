@@ -40,7 +40,6 @@ export const handleGameStarted = ({leader}) => {
   disableCanvas();
   hideControls();
   enableChat();
-  resetCanvas();
   handleAllNotif(`${leader}(이)가 문제를 내고 있습니다. 정답을 맞춰보아요.`);
 };
 
@@ -57,6 +56,9 @@ export const handleGameEnded = ({word}) => {
 };
 export const handleGameStarting = ({count}) => {
   startTimer(count);
+  setTimeout(() => {
+    resetCanvas();
+  }, 1000);
   function startTimer(count){
     setTimeout(() => {
       handleAllNotif(`곧 게임이 시작됩니다. ${count}` );
