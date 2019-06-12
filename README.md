@@ -1,13 +1,52 @@
 # guess-mine
 Realtime Drawing Game built with SocketIO, Gulp and NodeJS
 
-## To Do:
+## How to run
+### 1. Install node modules
+```
+  yarn 
+  or
+  npm ci
+  or
+  npm install
+```
+### 2. Install ejs
+```
+yarn add ejs
+```
 
-- [x] Server
-- [x] Pug
-- [x] Static
-- [x] SocketIO
-yar
+### 3. Install gulp
+```
+  yarn add gulp
+  yarn add gulp-sass
+  yarn add node-sass
+  yarn add gulp-autoprefixer
+  yarn add gulp-csso
+  yarn add gulp-browserify
+```
+### 4. Install babel node
+```
+  yarn add @babel/node
+  yarn add @babel/core
+  yarn add @babel/preset-env
+  yarn add @babel/preset-es2015 -D
+```
+### 5. Run gulp and node server
+```
+  yarn dev:assets
+  yarn dev:server
+
+  or
+
+  npm run dev:assets
+  npm run dev:server
+```
+
+## ejs
+```
+yarn add ejs
+```
+
 ## nodemon
 ```
 yarn add nodemon
