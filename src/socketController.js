@@ -39,7 +39,7 @@ const socketController = (socket, io) => {
     function showTime(time){
       howGameTimeout = setTimeout(() => {
         if ((playingTimeout !== null) && (time > 1)){
-          superBroadcast(events.allNotif2,  `남은시간 : ${time}초`);
+          superBroadcast(events.allNotif2,  `残りの時間 : ${time}秒`);
           showTime(time-1);
           if(time == 30){
             let wordSlice = word.slice(0,1);
@@ -109,7 +109,7 @@ const socketController = (socket, io) => {
     startCheckTimeout = setTimeout(() => {
       if(!gameStartFlag){
         endGame(3,0);
-        superBroadcast(events.allNotif,  "플레이어가 동작이 없어 턴을 넘깁니다.");
+        superBroadcast(events.allNotif,  "プレイヤーがプレイしてなくてゲームを終了します。");
       }
     }, 12000);
   };
@@ -138,8 +138,8 @@ const socketController = (socket, io) => {
   socket.on(events.sendMsg, ({ message }) => {
     if((socket.id !== leader.id) && (message === word)) {
       superBroadcast(events.newMsg, {
-        message: `승자는 ${socket.nickname}입니다. 답: ${word}`,
-        nickname: "안내봇"
+        message: `正解者は ${socket.nickname}です. 正解: ${word}`,
+        nickname: "案内ボット"
       });
       addPoints(socket.id);
     } else {

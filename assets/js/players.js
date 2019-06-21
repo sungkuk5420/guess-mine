@@ -40,17 +40,17 @@ export const handleGameStarted = ({leader}) => {
   disableCanvas();
   hideControls();
   enableChat();
-  handleAllNotif(`${leader}(이)가 문제를 내고 있습니다. 정답을 맞춰보아요.`);
+  handleAllNotif(`${leader}が 問題を提出しています。正解を当ててみましょう。`);
 };
 
 export const handleLeaderNotif = ({ word }) => {
   enableCanvas();
   showControls();
   enableChat();
-  notifs.innerText = `당신은 출제자입니다. 답: ${word}`;
+  notifs.innerText = `あなたは.提出者です。 問題: ${word}`;
 };
 export const handleGameEnded = ({word}) => {
-  handleAllNotif(`게임 끝. 답: ${word}`);
+  handleAllNotif(`ゲーム終了. 正解: ${word}`);
   disableCanvas();
   hideControls();
 };
@@ -61,7 +61,7 @@ export const handleGameStarting = ({count}) => {
   }, 1000);
   function startTimer(count){
     setTimeout(() => {
-      handleAllNotif(`곧 게임이 시작됩니다. ${count}` );
+      handleAllNotif(`まもなくゲームが始めます。 ${count}` );
       if(count > 1){
         startTimer(count-1);
       }
