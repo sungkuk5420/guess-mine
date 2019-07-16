@@ -21,7 +21,10 @@
 
 <body>
     <div class="loginBox">
-        <form id="jsLogin"><input placeholder="ニックネーム入力" type="text" /></form>
+        <form id="jsLogin">
+            <input placeholder="ニックネーム入力" type="text" />
+            <input type="submit" value="OK" style="width:50px;"/>
+        </form>
     </div>
     <div class="gameContainer" id="jsGame">
         <div class="main" id="jsMain">
@@ -45,7 +48,9 @@
         <div class="chat" id="jsChat">
             <div class="player__board" id="jsPBoard"></div>
             <ul class="chat__messages" id="jsMessages"></ul>
-            <form class="chat__form" id="jsSendMsg"><input placeholder="正解はこちらに入力してください。" type="text" /></form><button class="reset__nickname" id="jsResetNickname">닉네임 변경</button></div>
+            <form class="chat__form" id="jsSendMsg">
+                <input placeholder="正解はこちらに入力してください。" type="text" />
+            </form><button class="reset__nickname" id="jsResetNickname">ニックネーム変更</button></div>
     </div>
     <script>
         window.events = <%- events %>;

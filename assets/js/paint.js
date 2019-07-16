@@ -10,11 +10,13 @@ const colors = document.getElementsByClassName("jsColor");
 const mode = document.getElementById("jsMode");
 
 const INITIAL_COLOR = "#2c2c2c";
-setTimeout(() => {
-  hendleWindowResize();
-}, 100);
+const CANVAS_SIZE = 700;
+
+canvas.width = CANVAS_SIZE;
+canvas.height = CANVAS_SIZE;
+
 ctx.fillStyle = "white";
-ctx.fillRect(0, 0, canvas.width, canvas.height);
+ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
 ctx.strokeStyle = INITIAL_COLOR;
 ctx.fillStyle = INITIAL_COLOR;
 ctx.lineWidth = 2.5;
@@ -28,69 +30,41 @@ const stopPainting = () => {
 };
 
 const startPainting = () => {
-  getSocket().emit(window.events.changeGameStartingFlag, {
-    status : true
-  });
-  ctx.beginPath();
-  if(event.type === 'touchstart'){
-    onMouseMove(event);
-    sendMsg.blur();
-  }
-  if (!filling) {
-    painting = true;
-  } else {
-    handleCanvasClick();
-  }
+  painting = true;
 };
 
-const beginPath = (x, y, width, height) => {
-  if(width && height){
-    x = canvas.width * (x/width);
-    y = canvas.height * (y/height);
-  }
+const beginPath = (x, y) => {
+  ctx.beginPath();
   ctx.moveTo(x, y);
 };
 
-const strokePath = (x, y, width, height, color = null) => {
-  if(width && height){
-    x = canvas.width * (x/width);
-    y = canvas.height * (y/height);
-  }
-
+const strokePath = (x, y, color = null) => {
   let currentColor = ctx.strokeStyle;
   if (color !== null) {
     ctx.strokeStyle = color;
   }
   ctx.lineTo(x, y);
   ctx.stroke();
-  
   ctx.strokeStyle = currentColor;
 };
 
-const onMouseMove = (event) => {
-  const x = event.offsetX || (event.touches[0].pageX - event.touches[0].target.offsetLeft);
-  const y = event.offsetY || (event.touches[0].pageY - event.touches[0].target.offsetTop);
-  let width = canvas.width;
-  let height = canvas.height;
+
+const onMouseMove = event => {
+  const x = event.offsetX;
+  const y = event.offsetY;
   if (!painting) {
     beginPath(x, y);
-    getSocket().emit(window.events.beginPath, { 
-      x, 
-      y, 
-      width, 
-      height 
-    });
+    getSocket().emit(window.events.beginPath, { x, y });
   } else {
     strokePath(x, y);
     getSocket().emit(window.events.strokePath, {
       x,
       y,
-      width,
-      height,
       color: ctx.strokeStyle
     });
   }
 };
+
 
 const handleColorClick = event => {
   const color = event.target.style.backgroundColor;
@@ -113,9 +87,10 @@ const fill = (color = null) => {
   if (color !== null) {
     ctx.fillStyle = color;
   }
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
   ctx.fillStyle = currentColor;
 };
+
 
 const handleCanvasClick = () => {
   if (filling) {
@@ -153,12 +128,12 @@ if (mode) {
   mode.addEventListener("click", handleModeClick);
 }
 
-if (window) {
-  window.addEventListener("resize", hendleWindowResize);
-}
+// if (window) {
+//   window.addEventListener("resize", hendleWindowResize);
+// }
 
-export const handleBeganPath = ({ x, y, width, height }) => beginPath(x, y, width, height);
-export const handleStrokedPath = ({ x, y, width, height, color }) => strokePath(x, y, width, height, color);
+export const handleBeganPath = ({ x, y }) => beginPath(x, y);
+export const handleStrokedPath = ({ x, y, color }) => strokePath(x, y, color);
 export const handleFilled = ({ color }) => fill(color);
 
 export const disableCanvas = () => {
@@ -167,12 +142,6 @@ export const disableCanvas = () => {
   canvas.removeEventListener("mouseup", stopPainting);
   canvas.removeEventListener("mouseleave", stopPainting);
   canvas.removeEventListener("click", handleCanvasClick);
-
-  canvas.removeEventListener("touchmove", onMouseMove);
-  canvas.removeEventListener("touchstart", startPainting);
-  canvas.removeEventListener("touchend", stopPainting);
-  canvas.removeEventListener("touchleave", stopPainting);
-  canvas.removeEventListener("touchcancel", stopPainting);
 };
 
 export const enableCanvas = () => {
@@ -181,12 +150,6 @@ export const enableCanvas = () => {
   canvas.addEventListener("mouseup", stopPainting);
   canvas.addEventListener("mouseleave", stopPainting);
   canvas.addEventListener("click", handleCanvasClick);
-
-  canvas.addEventListener("touchmove", onMouseMove);
-  canvas.addEventListener("touchstart", startPainting);
-  canvas.addEventListener("touchend", stopPainting);
-  canvas.addEventListener("touchleave", stopPainting);
-  canvas.addEventListener("touchcancel", stopPainting);
 };
 
 export const hideControls = () => (controls.style.display = "none");

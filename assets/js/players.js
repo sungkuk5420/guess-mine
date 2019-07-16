@@ -41,6 +41,7 @@ export const handleGameStarted = ({leader}) => {
   hideControls();
   enableChat();
   handleAllNotif(`${leader}が 問題を提出しています。正解を当ててみましょう。`);
+  resetCanvas();
 };
 
 export const handleLeaderNotif = ({ word }) => {
@@ -48,6 +49,7 @@ export const handleLeaderNotif = ({ word }) => {
   showControls();
   enableChat();
   notifs.innerText = `あなたは.提出者です。 問題: ${word}`;
+  resetCanvas();
 };
 export const handleGameEnded = ({word}) => {
   handleAllNotif(`ゲーム終了. 正解: ${word}`);
@@ -55,16 +57,14 @@ export const handleGameEnded = ({word}) => {
   hideControls();
 };
 export const handleGameStarting = ({count}) => {
-  startTimer(count);
-  setTimeout(() => {
-    resetCanvas();
-  }, 1000);
-  function startTimer(count){
-    setTimeout(() => {
-      handleAllNotif(`まもなくゲームが始めます。 ${count}` );
-      if(count > 1){
-        startTimer(count-1);
-      }
-    }, 1000 );
-  }
+  // startTimer(count);
+  // function startTimer(count){
+    // setTimeout(() => {
+      handleAllNotif(`まもなくゲームが始めます。` );
+      resetCanvas();
+      // if(count > 1){
+        // startTimer(count-1);
+      // }
+    // }, 1000 );
+  // }
 };

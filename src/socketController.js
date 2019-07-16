@@ -28,7 +28,7 @@ const socketController = (socket, io) => {
           io.to(leader.id).emit(events.leaderNotif, { word });
           playingTimeout = setTimeout(endGame, 62000);
           showGameTime(60);
-          gameStartCheck();
+          // gameStartCheck();
         }, 1000 * (count+1));
       }
     }
@@ -64,6 +64,8 @@ const socketController = (socket, io) => {
         }else{
           superBroadcast(events.allNotif2,  ``);
           superBroadcast(events.allNotif3,  ``);
+          clearTimeout(howGameTimeout);
+          howGameTimeout = null;
         }
       }, 1000 );
     }
@@ -147,12 +149,12 @@ const socketController = (socket, io) => {
     }
   });
 
-  socket.on(events.beginPath, ({ x, y, width, height }) =>
-    broadcast(events.beganPath, { x, y, width, height })
+  socket.on(events.beginPath, ({ x, y}) =>
+    broadcast(events.beganPath, { x, y})
   );
 
-  socket.on(events.strokePath, ({ x, y, width, height, color }) => {
-    broadcast(events.strokedPath, { x, y, width, height, color });
+  socket.on(events.strokePath, ({ x, y, color }) => {
+    broadcast(events.strokedPath, { x, y, color });
   });
 
   socket.on(events.fill, ({ color }) => {
