@@ -12,9 +12,11 @@ const mode = document.getElementById("jsMode");
 const INITIAL_COLOR = "#2c2c2c";
 setTimeout(() => {
   hendleWindowResize();
-}, 100);
-ctx.fillStyle = "white";
-ctx.fillRect(0, 0, canvas.width, canvas.height);
+  canvas.width = canvas.clientWidth;
+  canvas.height = canvas.clientHeight;
+  ctx.fillStyle = "white";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+}, 2000);
 ctx.strokeStyle = INITIAL_COLOR;
 ctx.fillStyle = INITIAL_COLOR;
 ctx.lineWidth = 2.5;
@@ -138,12 +140,12 @@ const hendleWindowResize = () => {
     clearTimeout(timer);
   }
   timer = setTimeout(function() {
-    let smallSize = canvas.offsetWidth <= canvas.offsetHeight ? canvas.offsetWidth : canvas.offsetHeight;
-    canvas.width = smallSize;
-    canvas.height = smallSize;
+    // let smallSize = canvas.offsetWidth <= canvas.offsetHeight ? canvas.offsetWidth : canvas.offsetHeight;
+    // canvas.width = smallSize;
+    // canvas.height = smallSize;
     // main.style.width = smallSize + "px";
     // main.style.height = smallSize + "px";
-    chat.style.height = "calc(100% - "+(smallSize+80) + "px)";
+    // chat.style.height = "calc(100% - "+(smallSize+80) + "px)";
   }, 200);
 
 }
