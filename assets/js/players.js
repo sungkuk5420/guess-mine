@@ -40,7 +40,7 @@ export const handleGameStarted = ({leader}) => {
   disableCanvas();
   hideControls();
   enableChat();
-  handleAllNotif(`${leader}(이)가 문제를 내고 있습니다. 정답을 맞춰보아요.`);
+  notifs.innerText = `${leader}(이)가 문제를 내고 있습니다. 정답을 맞춰보아요.`;
 };
 
 export const handleLeaderNotif = ({ word }) => {
@@ -49,22 +49,20 @@ export const handleLeaderNotif = ({ word }) => {
   enableChat();
   notifs.innerText = `당신은 출제자입니다. 답: ${word}`;
 };
+
+export const handleNotLeaderNotif = ({message,leader}) => {
+  const nickname = localStorage.getItem("nickname");
+  if(leader){
+    if(nickname !=leader.nickname){
+      notifs.innerText = `${message}`;
+    }
+  }
+};
 export const handleGameEnded = ({word}) => {
   handleAllNotif(`게임 끝. 답: ${word}`);
   disableCanvas();
   hideControls();
 };
 export const handleGameStarting = ({count}) => {
-  startTimer(count);
-  setTimeout(() => {
-    resetCanvas();
-  }, 1000);
-  function startTimer(count){
-    setTimeout(() => {
-      handleAllNotif(`곧 게임이 시작됩니다. ${count}` );
-      if(count > 1){
-        startTimer(count-1);
-      }
-    }, 1000 );
-  }
+  resetCanvas();
 };

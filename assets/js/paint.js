@@ -31,6 +31,7 @@ const startPainting = () => {
   getSocket().emit(window.events.changeGameStartingFlag, {
     status : true
   });
+  console.log("startPainting")
   ctx.beginPath();
   if(event.type === 'touchstart'){
     onMouseMove(event);
@@ -52,6 +53,7 @@ const beginPath = (x, y, width, height) => {
 };
 
 const strokePath = (x, y, width, height, color = null) => {
+  console.log("strokePath")
   if(width && height){
     x = canvas.width * (x/width);
     y = canvas.height * (y/height);
@@ -68,6 +70,7 @@ const strokePath = (x, y, width, height, color = null) => {
 };
 
 const onMouseMove = (event) => {
+  console.log("onMouseMove")
   const x = event.offsetX || (event.touches[0].pageX - event.touches[0].target.offsetLeft);
   const y = event.offsetY || (event.touches[0].pageY - event.touches[0].target.offsetTop);
   let width = canvas.width;
@@ -191,7 +194,10 @@ export const enableCanvas = () => {
 
 export const hideControls = () => (controls.style.display = "none");
 export const showControls = () => (controls.style.display = "flex");
-export const resetCanvas = () => fill("#fff");
+export const resetCanvas = () => {
+  ctx.beginPath();  
+  fill("#fff");
+}
 
 if (canvas) {
   canvas.addEventListener("contextmenu", handleCM);

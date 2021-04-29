@@ -5,6 +5,7 @@ import {
   handlePlayerUpdate,
   handleGameStarted,
   handleLeaderNotif,
+  handleNotLeaderNotif,
   handleAllNotif,
   handleAllNotif2,
   handleAllNotif3,
@@ -28,6 +29,7 @@ export const initSockets = aSocket => {
   socket.on(events.playerUpdate, handlePlayerUpdate);
   socket.on(events.gameStarted, handleGameStarted);
   socket.on(events.leaderNotif, handleLeaderNotif);
+  socket.on(events.notLeaderNotif, handleNotLeaderNotif);
   socket.on(events.allNotif, handleAllNotif);
   socket.on(events.allNotif2, handleAllNotif2);
   socket.on(events.allNotif3, handleAllNotif3);
