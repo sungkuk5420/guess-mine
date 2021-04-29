@@ -9,6 +9,15 @@ body {
     padding: 30px;
     background-color: #6916ff;
     border-radius: 20px;
+    .user-li{
+      position: relative;
+      img{
+        opacity: 0.3;
+        &.is-show{
+          opacity: 1;
+        }
+      }
+    }
     .user-left {
       flex: 2;
       width: 100%;

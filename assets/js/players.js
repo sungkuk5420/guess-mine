@@ -26,27 +26,35 @@ const addPlayers = players => {
     if(index ==1){
       userInfo1.querySelector(".name").innerText =player.nickname;
       userInfo1.querySelector(".score").innerText =player.points;
+      userInfo1.querySelector(".user-info__photo").classList.add("is-show");
     }else if(index ==2){
       userInfo2.querySelector(".name").innerText =player.nickname;
       userInfo2.querySelector(".score").innerText =player.points;
+      userInfo2.querySelector(".user-info__photo").classList.add("is-show");
     }else if(index ==3){
       userInfo3.querySelector(".name").innerText =player.nickname;
       userInfo3.querySelector(".score").innerText =player.points;
+      userInfo3.querySelector(".user-info__photo").classList.add("is-show");
     }else if(index ==4){
       userInfo4.querySelector(".name").innerText =player.nickname;
       userInfo4.querySelector(".score").innerText =player.points;
+      userInfo4.querySelector(".user-info__photo").classList.add("is-show");
     }else if(index ==5){
       userInfo5.querySelector(".name").innerText =player.nickname;
       userInfo5.querySelector(".score").innerText =player.points;
+      userInfo5.querySelector(".user-info__photo").classList.add("is-show");
     }else if(index ==6){
       userInfo6.querySelector(".name").innerText =player.nickname;
       userInfo6.querySelector(".score").innerText =player.points;
+      userInfo6.querySelector(".user-info__photo").classList.add("is-show");
     }else if(index ==7){
       userInfo7.querySelector(".name").innerText =player.nickname;
       userInfo7.querySelector(".score").innerText =player.points;
+      userInfo7.querySelector(".user-info__photo").classList.add("is-show");
     }else if(index ==8){
       userInfo8.querySelector(".name").innerText =player.nickname;
       userInfo8.querySelector(".score").innerText =player.points;
+      userInfo8.querySelector(".user-info__photo").classList.add("is-show");
     }
     index++;
   });
