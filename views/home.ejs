@@ -24,28 +24,107 @@
         <form id="jsLogin"><input placeholder="닉네임 입력" type="text" /></form>
     </div>
     <div class="gameContainer" id="jsGame">
-        <div class="main" id="jsMain">
-            <div id="jsNotifs"></div>
-            <div class="notifs2" id="jsNotifs2"></div>
-            <div class="notifs3" id="jsNotifs3"></div><canvas class="canvas" id="jsCanvas"></canvas>
-            <div class="controls" id="jsControls"><button id="jsMode">Fill</button>
-                <div class="colors">
-                    <div class="color jsColor" style="background-color:rgb(0, 0, 0);"></div>
-                    <div class="color jsColor" style="background-color:rgb(255,255,255);"></div>
-                    <div class="color jsColor" style="background-color:rgb(255,59,48);"></div>
-                    <div class="color jsColor" style="background-color:rgb(255,149,0);"></div>
-                    <div class="color jsColor" style="background-color:rgb(255,204,0);"></div>
-                    <div class="color jsColor" style="background-color:rgb(76,217,100);"></div>
-                    <div class="color jsColor" style="background-color:rgb(90,200,250);"></div>
-                    <div class="color jsColor" style="background-color:rgb(0,122,255);"></div>
-                    <div class="color jsColor" style="background-color:rgb(88,86,214);"></div>
+        <div class="game main" id="jsMain">
+            <ul class="user-left">
+              <li>
+                <div class="user-info__text">
+                  <div class="name">id</div>
+                  <div class="score">20P</div>
                 </div>
+                <img class="user-info__photo" src="./images/user-1.png" />
+              </li>
+              <li>
+                <div class="user-info__text">
+                  <div class="name">id</div>
+                  <div class="score">20P</div>
+                </div>
+                <img class="user-info__photo" src="./images/user-1.png" />
+              </li>
+              <li>
+                <div class="user-info__text">
+                  <div class="name">id</div>
+                  <div class="score">20P</div>
+                </div>
+                <img class="user-info__photo" src="./images/user-1.png" />
+              </li>
+              <li>
+                <div class="user-info__text">
+                  <div class="name">id</div>
+                  <div class="score">20P</div>
+                </div>
+                <img class="user-info__photo" src="./images/user-1.png" />
+              </li>
+            </ul>
+            <div class="game-main">
+              <canvas class="canvas" id="jsCanvas"></canvas>
+              <div class="controls control-palette" id="jsControls"><button id="jsMode">Fill</button>
+                  <ul class="colors palette-color">
+                      <li class="color jsColor" style="background-color:rgb(0, 0, 0);"></li\>
+                      <li class="color jsColor" style="background-color:rgb(255,255,255);"></li\>
+                      <li class="color jsColor" style="background-color:rgb(255,59,48);"></li\>
+                      <li class="color jsColor" style="background-color:rgb(255,149,0);"></li\>
+                      <li class="color jsColor" style="background-color:rgb(255,204,0);"></li\>
+                      <li class="color jsColor" style="background-color:rgb(76,217,100);"></li\>
+                      <li class="color jsColor" style="background-color:rgb(90,200,250);"></li\>
+                      <li class="color jsColor" style="background-color:rgb(0,122,255);"></li\>
+                      <li class="color jsColor" style="background-color:rgb(88,86,214);"></li\>
+                  </ul>
+                  <div class="palette-button">
+                      <button>전체 지우기</button>
+                      <button>포기하기</button>
+                    </div>
+              </div> 
+              <div class="control-utill">
+                <div class="control-time">
+                  <div class="notifs1" id="jsNotifs"></div>
+                  <div class="notifs2" id="jsNotifs2"></div>
+                  <div class="notifs3" id="jsNotifs3"></div>
+                </div>
+                <div class="control-chat">
+                  <form>
+                    <input type="text" />
+                    <button type="submit">전송</button>
+                  </form>
+                </div>
+              </div>
             </div>
-        </div>
-        <div class="chat" id="jsChat">
-            <div class="player__board" id="jsPBoard"></div>
-            <ul class="chat__messages" id="jsMessages"></ul>
-            <form class="chat__form" id="jsSendMsg"><input placeholder="정답은 여기에 입력해주세요." type="text" /></form><button class="reset__nickname" id="jsResetNickname">닉네임 변경</button></div>
+            <ul class="user-right">
+              <li>
+                <img class="user-info__photo" src="./images/user-1.png" />
+                <div class="user-info__text">
+                  <div class="name">id</div>
+                  <div class="score">20P</div>
+                </div>
+              </li>
+              <li>
+                <img class="user-info__photo" src="./images/user-1.png" />
+                <div class="user-info__text">
+                  <div class="name">id</div>
+                  <div class="score">20P</div>
+                </div>
+              </li>
+              <li>
+                <img class="user-info__photo" src="./images/user-1.png" />
+                <div class="user-info__text">
+                  <div class="name">id</div>
+                  <div class="score">20P</div>
+                </div>
+              </li>
+              <li>
+                <img class="user-info__photo" src="./images/user-1.png" />
+                <div class="user-info__text">
+                  <div class="name">id</div>
+                  <div class="score">20P</div>
+                </div>
+              </li>
+            </ul>
+            <div class="chat" id="jsChat">
+                <div class="player__board" id="jsPBoard"></div>
+                <ul class="chat__messages" id="jsMessages"></ul>
+                <form class="chat__form" id="jsSendMsg"><input placeholder="정답은 여기에 입력해주세요." type="text" /></form>
+                <button class="reset__nickname" id="jsResetNickname">닉네임 변경</button>
+            </div>
+          </div>
     </div>
     <script>
         window.events = <%- events %>;

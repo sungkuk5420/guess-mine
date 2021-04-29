@@ -132,8 +132,8 @@ const handleCM = event => {
 };
 
 const hendleWindowResize = () => {
-  main.style.width = "";
-  main.style.height = "";
+  // main.style.width = "";
+  // main.style.height = "";
   if (timer) {
     clearTimeout(timer);
   }
@@ -141,8 +141,8 @@ const hendleWindowResize = () => {
     let smallSize = canvas.offsetWidth <= canvas.offsetHeight ? canvas.offsetWidth : canvas.offsetHeight;
     canvas.width = smallSize;
     canvas.height = smallSize;
-    main.style.width = smallSize + "px";
-    main.style.height = smallSize + "px";
+    // main.style.width = smallSize + "px";
+    // main.style.height = smallSize + "px";
     chat.style.height = "calc(100% - "+(smallSize+80) + "px)";
   }, 200);
 

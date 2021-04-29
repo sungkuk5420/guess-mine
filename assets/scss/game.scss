@@ -13,10 +13,9 @@
     box-shadow: 0 3px 36px rgba(23, 55, 87, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
   }
   .main {
-    margin-right: 200px;
+    width: 100%;
+    height:100%;
     #jsCanvas {
-      width: 550px;
-      height: 550px;
     }
     .controls {
       margin-top: 25px;
@@ -74,9 +73,10 @@
   .chat {
     width: 200px;
   }
+  .notifs1,
   .notifs2,
   .notifs3{
-    display: inline;
+    display: inline-block;
   }
   .reset__nickname{
     margin-left: 25px;
