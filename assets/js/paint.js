@@ -194,8 +194,12 @@ export const enableCanvas = () => {
   canvas.addEventListener("touchcancel", stopPainting);
 };
 
-export const hideControls = () => (controls.style.display = "none");
-export const showControls = () => (controls.style.display = "flex");
+export const hideControls = () => {
+    controls.classList.add("is-disabled");
+  };
+export const showControls = () => {
+  controls.classList.remove("is-disabled");
+};
 export const resetCanvas = () => {
   ctx.beginPath();  
   fill("#fff");

@@ -24,7 +24,11 @@
       display: flex;
       align-items: center;
       flex-direction: column;
-      .colors {
+      &.is-disabled{
+        opacity: 0.5;
+        pointer-events: none;
+      }
+      :not(.is-disabled).colors {
         margin: 20px;
         display: flex;
         &:hover .color {
