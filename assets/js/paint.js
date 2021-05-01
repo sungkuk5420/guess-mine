@@ -8,6 +8,8 @@ const sendMsg = document.getElementById("jsSendMsg");
 const ctx = canvas.getContext("2d");
 const colors = document.getElementsByClassName("jsColor");
 const mode = document.getElementById("jsMode");
+const clearButton = document.getElementById("clearButton");
+
 
 const INITIAL_COLOR = "#2c2c2c";
 setTimeout(() => {
@@ -77,6 +79,7 @@ const onMouseMove = (event) => {
   const y = event.offsetY || (event.touches[0].pageY - event.touches[0].target.offsetTop);
   let width = canvas.width;
   let height = canvas.height;
+  console.log(painting)
   if (!painting) {
     beginPath(x, y);
     getSocket().emit(window.events.beginPath, { 
@@ -106,10 +109,10 @@ const handleColorClick = event => {
 const handleModeClick = () => {
   if (filling === true) {
     filling = false;
-    mode.innerText = "Fill";
+    mode.innerText = "페인트로 변경";
   } else {
     filling = true;
-    mode.innerText = "Paint";
+    mode.innerText = "펜으로 변경";
   }
 };
 
@@ -125,6 +128,7 @@ const fill = (color = null) => {
 const handleCanvasClick = () => {
   if (filling) {
     fill();
+    handleModeClick();
     getSocket().emit(window.events.fill, { color: ctx.fillStyle });
   }
 };
@@ -162,9 +166,20 @@ if (window) {
   window.addEventListener("resize", hendleWindowResize);
 }
 
+if(clearButton){
+  clearButton.addEventListener("click",function(){
+    resetCanvas();
+    getSocket().emit(window.events.fill, { color: "#ffffff" });
+  })
+}
 export const handleBeganPath = ({ x, y, width, height }) => beginPath(x, y, width, height);
 export const handleStrokedPath = ({ x, y, width, height, color }) => strokePath(x, y, width, height, color);
-export const handleFilled = ({ color }) => fill(color);
+export const handleFilled = ({ color }) => {
+  fill(color); 
+  if(color ==="#ffffff"){
+    resetCanvas();
+  }
+}
 
 export const disableCanvas = () => {
   canvas.removeEventListener("mousemove", onMouseMove);
