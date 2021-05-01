@@ -5,7 +5,7 @@ import logger from "morgan";
 import socketController from "./socketController";
 import events from "./events";
 
-const PORT =  443;
+const PORT =  process.env.PORT || 5000;
 const app = express();
 app.set("views", join(__dirname, "../views"));
 app.set('view engine', 'ejs');
