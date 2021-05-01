@@ -59,9 +59,6 @@
       }
     }
   }
-  .chat {
-    width: 200px;
-  }
   .notifs1,
   .notifs2,
   .notifs3{
@@ -87,94 +84,6 @@
   }
 }
 
-@media screen and (max-width: 992px) {
-  body.loggedIn{
-    align-items: start;
-  }
-  .gameContainer {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    padding:15px;
-    .canvas,
-    .chatMessages {
-    }
-    .main {
-      width:85%;
-      height:100%;
-      margin-right: 0;
-      #jsCanvas {
-        width:100%;
-        height:100%;
-      }
-      .controls {
-        margin-top: 10px;
-        .colors {
-          display: flex;
-          -webkit-box-pack: center;
-          -ms-flex-pack: center;
-          justify-content: center;
-          width: 100%;
-          margin: 10px;
-          &:hover .color {
-          }
-          .color {
-            width: 12%;
-            max-width: 50px;
-            max-height: 50px;
-            height: 0;
-            padding-bottom: 12%;
-            border-radius: 25px;
-            cursor: pointer;
-            -webkit-box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-            box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-            &:hover {
-              & ~ .color {
-              }
-            }
-            &.selectedColor {
-            }
-          }
-        }
-        button {
-          &:active {
-          }
-        }
-      }
-    }
-    .chat {
-      margin-top: 20px;
-      width:100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      opacity: 0.5;
-      height:40px;
-      padding:5px;
-      .chat__messages{
-        height: 100%;
-      }
-      .chat__form{
-        top:auto;
-        position: absolute;
-        bottom:100px;
-        left: 10px;
-        right: 10px;
-        margin: auto;
-        input{
-          width: 100%;
-        }
-      }
-    }
-    
-    .player__board {
-      grid-template-columns: 1fr 1fr 1fr 1fr !important;
-      margin-bottom:10px;
-    }
-  }
-}
   
 button {
   margin-left: 25px;

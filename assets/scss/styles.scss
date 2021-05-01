@@ -63,3 +63,83 @@ body {
 .safari input[type='text'] {
     font-size: 16px;
 }
+
+
+
+@media screen and (max-width: 992px) {
+  .game{
+    padding: 10px !important;
+    .game-main canvas{
+      height: 40vh !important;
+    }
+  }
+  canvas{
+    margin-bottom:10px !important;
+  }
+  .user-left,
+  .user-right{
+    display: none !important;
+  }
+  .game-main{
+    margin:0 !important;
+  }
+  .control-utill{
+    flex-direction: column !important;
+    align-items: flex-start!important;
+    height: auto!important;
+    width: 100% !important;
+    flex: 1!important;
+    height: 20vh !important;
+    flex-direction: column-reverse !important;
+    .control-chat{
+      input{
+        max-width: 50%!important;
+      }
+      .chat__form{
+        display: flex;
+        justify-content: center!important;
+      }
+    }
+  }
+  .gameContainer{
+    width: 100%!important;
+    height:100%!important;
+    .main .controls{
+      height: 20vh !important;
+      .palette-button{
+        button{
+          margin:0 !important;
+        }
+      }
+      :not(.is-disabled).colors{
+        flex-wrap: wrap;
+        margin: 10px !important;
+        .color{
+          width:25px !important;
+          height:25px !important;
+        }
+      } 
+    } 
+  }
+  .chat{
+    display: flex!important;
+    position: absolute!important;
+    width: 100%!important;
+    height:20vh!important;
+    top: calc(20vh + 10px)!important;
+    left:0!important;
+    z-index: 1!important;
+    background: none!important;
+    border-radius: 15px!important;
+    
+    .chat__messages{
+      padding: 5px 20px!important;
+    }
+  }
+  #jsMessages{
+    background: none!important;
+    width: 100%!important;
+    
+    height: 100%!important;
+  }
+ }
