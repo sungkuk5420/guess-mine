@@ -16,8 +16,9 @@
     width: 100%;
     height:100%;
     #jsCanvas {
-      // width:700px;
-      // height:500px;
+        &.is-leader{
+          border: 7px solid red;
+        }
     }
     .controls {
       margin-top: 25px;

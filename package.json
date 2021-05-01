@@ -6,9 +6,9 @@
   "author": "sungkuk5420 <sungkuk5420@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@babel/core": "^7.13.16",
+    "@babel/core": "^7.14.0",
     "@babel/node": "^7.13.13",
-    "@babel/preset-env": "^7.13.15",
+    "@babel/preset-env": "^7.14.0",
     "babelify": "^10.0.0",
     "del": "^4.1.0",
     "ejs": "^2.6.1",
@@ -27,15 +27,14 @@
   },
   "scripts": {
     "dev:server": "nodemon --exec babel-node src/server",
-      "dev:assets": "gulp",
-      "build": "npm run clean && npm run build-babel",
-      "build-babel": "./node_modules/.bin/babel -d ./build ./src",
-      "clean": "rm -rf build && mkdir build",
-      "start": "mkdir ./build/static/styles && mkdir ./build/images && cp ./src/static/styles/* ./build/static/styles &&cp ./src/images/* ./build/images && node ./build/server"
+    "dev:assets": "gulp",
+    "build": "npm run clean && npm run build-babel",
+    "build-babel": "./node_modules/.bin/babel -d ./build ./src",
+    "clean": "rm -rf build && mkdir build",
+    "start": "mkdir ./build/static/styles && mkdir ./build/images && cp ./src/static/styles/* ./build/static/styles &&cp ./src/images/* ./build/images && node ./build/server"
   },
   "devDependencies": {
     "@babel/preset-es2015": "^7.0.0-beta.53",
-    "babel-cli": "^6.26.0",
     "eslint-config-prettier": "^4.3.0",
     "eslint-plugin-prettier": "^3.0.1",
     "prettier": "1.17.1"

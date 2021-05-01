@@ -12,24 +12,24 @@ Realtime Drawing Game built with SocketIO, Gulp and NodeJS
 ```
 ### 2. Install ejs
 ```
-yarn add ejs
+npm install ejs
 ```
 
 ### 3. Install gulp
 ```
-  yarn add gulp
-  yarn add gulp-sass
-  yarn add node-sass
-  yarn add gulp-autoprefixer
-  yarn add gulp-csso
-  yarn add gulp-browserify
+  npm install gulp
+  npm install gulp-sass
+  npm install node-sass
+  npm install gulp-autoprefixer
+  npm install gulp-csso
+  npm install gulp-browserify
 ```
 ### 4. Install babel node
 ```
-  yarn add @babel/node
-  yarn add @babel/core
-  yarn add @babel/preset-env
-  yarn add @babel/preset-es2015 -D
+  npm install @babel/node
+  npm install @babel/core
+  npm install @babel/preset-env
+  npm install @babel/preset-es2015 -D
 ```
 ### 5. Run gulp and node server
 ```
@@ -44,47 +44,47 @@ yarn add ejs
 
 ## ejs
 ```
-yarn add ejs
+npm install ejs
 ```
 
 ## nodemon
 ```
-yarn add nodemon
+npm install nodemon
 ```
 
 ##express
 ```
-yarn add express
+npm install express
 ```
 
 ##socket.io
 ```
-yarn add socket.io
+npm install socket.io
 ```
 
 ##babel
 ```
-yarn add @babel/node
-yarn add @babel/core
-yarn add @babel/preset-env
-yarn add @babel/preset-es2015 -D
+npm install @babel/node
+npm install @babel/core
+npm install @babel/preset-env
+npm install @babel/preset-es2015 -D
 ```
 
 ##pug
 ```
-yarn add pug
+npm install pug
 ```
 
 ##eslint
 ```
-yarn add eslint
+npm install eslint
 ```
 
 ##eslint
 ```
-yarn add eslint-config-prettier -D
-yarn add eslint-plugin-prettier -D
-yarn add prettier -D
+npm install eslint-config-prettier -D
+npm install eslint-plugin-prettier -D
+npm install prettier -D
 ```
 
 ##Install vscode extenstion ESLint
@@ -97,25 +97,25 @@ taskkill /pid *****
 
 ##morgan
 ```
-yarn add morgan
+npm install morgan
 ```
 
 ##gulp
 ```
-yarn add gulp
-yarn add gulp-sass
-yarn add node-sass
-yarn add gulp-autoprefixer
-yarn add gulp-csso
-yarn add gulp-browserify
+npm install gulp
+npm install gulp-sass
+npm install node-sass
+npm install gulp-autoprefixer
+npm install gulp-csso
+npm install gulp-browserify
 ```
 
 ##del
 ```
-yarn add del
+npm install del
 ```
 
 ##babelify
 ```
-yarn add babelify
+npm install babelify
 ```

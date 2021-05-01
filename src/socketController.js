@@ -5,9 +5,10 @@ let sockets = [];
 let inProgress = false;
 let word = null;
 let leader = null;
-let playingTimeout = null;// 게임을실행한후 60초
 let startCheckTimeout = null;// 동작이 없으면 종료하는 타이머 10초
-let howGameTimeout = null;// 시간초를 출력하는 타이머
+let gameTimerTimeout = null;// 시간초를 출력하는 타이머
+let countThreeSecondTimeout = null;// 시간초를 출력하는 타이머
+let gameEndDelayTimeout = null;// 시간초를 출력하는 타이머
 let gameStartFlag = false;
 
 const chooseLeader = () => sockets[Math.floor(Math.random() * sockets.length)];
@@ -21,26 +22,22 @@ const socketController = (socket, io) => {
     superBroadcast(events.gameStarted, { leader : leader.nickname });
     io.to(leader.id).emit(events.leaderNotif, { word });
     gameStartFlag = true;
-    playingTimeout = setTimeout(function(){
-      endGame({startTimerSecond:0,waitTimeSecond:0});
-    }, 62000);
     showGameTime(60);
     gameStartCheck();
   };
 
   const countThreeSeconds = (countData)=>{
     let count = countData;
-    setTimeout(() => {
+    countThreeSecondTimeout = setTimeout(() => {
+      console.log(count)
       if (count > 0) {
-        if(!gameStartFlag){
-          superBroadcast(events.gameStarting, { count });
+          superBroadcast(events.allNotif, `곧 게임이 시작됩니다. ${count}`);
+          superBroadcast(events.allNotif2,  ``);
+          superBroadcast(events.allNotif3,  ``);
           count--;
-        }
         countThreeSeconds(count);
       } else {
-        setTimeout(() => {
-          startGame();
-        }, 700);
+        startGame();
       }
     }, 1000);
   }
@@ -48,7 +45,7 @@ const socketController = (socket, io) => {
   const showGameTime = (time) => {
     showTime(time);
     function showTime(time){
-      howGameTimeout = setTimeout(() => {
+      gameTimerTimeout = setTimeout(() => {
         if ((gameStartFlag) && (time > 1)){
           superBroadcast(events.allNotif2,  `남은시간 : ${time}초`);
           showTime(time-1);
@@ -73,8 +70,7 @@ const socketController = (socket, io) => {
             }
           }
         }else{
-          superBroadcast(events.allNotif2,  ``);
-          superBroadcast(events.allNotif3,  ``);
+          endGame({startTimerSecond:0,waitTimeSecond:0});
         }
       }, 1000 );
     }
@@ -91,20 +87,24 @@ const socketController = (socket, io) => {
       clearTimeout(startCheckTimeout);
       startCheckTimeout = null;
     }
-    if (playingTimeout !== null) {
-      clearTimeout(playingTimeout);
-      playingTimeout = null;
+    if (gameTimerTimeout !== null) {
+      clearTimeout(gameTimerTimeout);
+      gameTimerTimeout = null;
     }
-    if (howGameTimeout !== null) {
-      clearTimeout(howGameTimeout);
-      howGameTimeout = null;
+    if (countThreeSecondTimeout !== null) {
+      clearTimeout(countThreeSecondTimeout);
+      countThreeSecondTimeout = null;
     }
+    if (gameEndDelayTimeout !== null) {
+      clearTimeout(gameEndDelayTimeout);
+      gameEndDelayTimeout = null;
+    }
+
     gameStartFlag = false;
-    setTimeout(() => {
+    superBroadcast(events.allNotif2,  `${wait}초 후 게임이 재시작 됩니다.`);
+    superBroadcast(events.allNotif3,  ``);
+    gameEndDelayTimeout = setTimeout(() => {
       inProgress = true;
-      superBroadcast(events.allNotif,  "곧 게임이 시작됩니다.");
-      superBroadcast(events.allNotif2,  ``);
-      superBroadcast(events.allNotif3,  ``);
       countThreeSeconds(start);
     }, 1000*wait);
   };
@@ -142,13 +142,7 @@ const socketController = (socket, io) => {
       superBroadcast(events.allNotif2,  ``);
       superBroadcast(events.allNotif3,  ``);
       if ((sockets.length > 1) ) {
-        superBroadcast(events.allNotif,  "곧 게임이 시작됩니다.");
-        superBroadcast(events.allNotif2,  ``);
-        superBroadcast(events.allNotif3,  ``);
-        if (inProgress === false) {
-          inProgress = true;
-          countThreeSeconds(3);
-        }
+        countThreeSeconds(3);
       }
     }else{
       if(leader){
@@ -160,7 +154,7 @@ const socketController = (socket, io) => {
   socket.on(events.disconnect, () => {
     sockets = sockets.filter(aSocket => aSocket.id !== socket.id);
     if (sockets.length === 1) {
-      endGame({startTimerSecond:0,waitTimeSecond:0});
+      endGame({startTimerSecond:3,waitTimeSecond:0});
     } else if (leader) {
       if (leader.id === socket.id) {
         endGame({startTimerSecond:0,waitTimeSecond:0});
@@ -172,10 +166,11 @@ const socketController = (socket, io) => {
 
   socket.on(events.sendMsg, ({ message }) => {
     console.log(socket.nickname)
+    superBroadcast(events.newMsg, { message, nickname: socket.nickname });
     if(!leader){
-      superBroadcast(events.newMsg, { message, nickname: socket.nickname });
       return false;
     }
+    
     if((socket.id !== leader.id) && (message === word)) {
       superBroadcast(events.newMsg, {
         message: `승자는 ${socket.nickname}입니다. 답: ${word}`,
@@ -183,9 +178,7 @@ const socketController = (socket, io) => {
       });
       addPoints(socket.id);
       endGame({startTimerSecond:3,waitTimeSecond:5});
-    } else {
-      superBroadcast(events.newMsg, { message, nickname: socket.nickname });
-    }
+    } 
   });
 
   socket.on(events.beginPath, ({ x, y, width, height }) =>

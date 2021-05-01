@@ -19,6 +19,9 @@ body {
           opacity: 1;
         }
       }
+      &.is-leader{
+        border: 7px solid red;
+      }
     }
     .user-left {
       flex: 2;

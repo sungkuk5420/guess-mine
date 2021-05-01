@@ -94,14 +94,24 @@ export const handleGameStarted = ({ leader }) => {
   disableCanvas();
   hideControls();
   enableChat();
+  console.log(leader)
   notifs.innerText = `${leader}님이 출제자 입니다.`;
+  removeLeaderEffectToUserInfo();
+  addLeaderEffectToUserInfo(leader);
+  
+  const nickname = localStorage.getItem("nickname");
+    if (nickname != leader) {
+      removeLeaderEffectToCanvas();
+    }else{
+      addLeaderEffectToCanvas();
+    }
 };
 
 export const handleLeaderNotif = ({ word }) => {
   enableCanvas();
   showControls();
   enableChat();
-  notifs.innerText = `문제: ${word}`;
+  notifs.innerText = `당신은 출제자 입니다. 문제: [ ${word} ]`;
 };
 
 export const handleNotLeaderNotif = ({ message, leader }) => {
@@ -112,8 +122,31 @@ export const handleNotLeaderNotif = ({ message, leader }) => {
     }
   }
 };
+
+const addLeaderEffectToCanvas= ()=>{
+  document.getElementById("jsCanvas").classList.add("is-leader")
+}
+const removeLeaderEffectToCanvas= ()=>{
+  document.getElementById("jsCanvas").classList.remove("is-leader")
+}
+const removeLeaderEffectToUserInfo= ()=>{
+  const leaderDOM = document.querySelector(".user-li.is-leader")
+  if(leaderDOM){
+    leaderDOM.classList.remove("is-leader");
+  }
+}
+const addLeaderEffectToUserInfo= (leader)=>{
+  const currentUserInfo = document.getElementsByClassName("user-li "+leader)[0];
+  if(currentUserInfo){
+    currentUserInfo.classList.add("is-leader")
+  }
+}
 export const handleGameEnded = ({ word }) => {
   handleAllNotif(`게임 끝. 답: ${word}`);
+  removeLeaderEffectToUserInfo();
+  removeLeaderEffectToCanvas();
+  handleAllNotif2(``);
+  handleAllNotif3(``);
   disableCanvas();
   hideControls();
 };
