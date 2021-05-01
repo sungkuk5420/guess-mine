@@ -124,8 +124,7 @@ export const handleGameStarted = ({ leader }) => {
   removeLeaderEffectToUserInfo();
   addLeaderEffectToUserInfo(leader);
   
-  const nickname = localStorage.getItem("nickname");
-    if (nickname != leader) {
+    if (window.nickname != leader) {
       removeLeaderEffectToCanvas();
     }else{
       addLeaderEffectToCanvas();
@@ -140,9 +139,9 @@ export const handleLeaderNotif = ({ word }) => {
 };
 
 export const handleNotLeaderNotif = ({ message, leader }) => {
-  const nickname = localStorage.getItem("nickname");
+  
   if (leader) {
-    if (nickname != leader.nickname) {
+    if (window.nickname != leader.nickname) {
       notifs.innerText = `${message}`;
     }
   }
