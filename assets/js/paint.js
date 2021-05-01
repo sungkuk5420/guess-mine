@@ -67,8 +67,8 @@ const strokePath = (x, y, width, height, color = null) => {
   }
   ctx.lineTo(x, y);
   ctx.stroke();
-  // ctx.strokeStyle = currentColor;
   
+  ctx.strokeStyle = currentColor;
 };
 
 const onMouseMove = (event) => {
