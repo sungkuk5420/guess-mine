@@ -29,8 +29,6 @@
   "scripts": {
     "dev:server": "nodemon --exec babel-node src/server",
     "dev:assets": "gulp",
-    "start": "nodemon --exec babel-node src/server",
-    "postinstall": "npm install -g @babel/core @babel/cli && nodemon --exec babel-node src/server",
     "build": "npm run clean && npm run build-babel",
     "build-babel": "./node_modules/.bin/babel -d ./build ./src",
     "clean": "rm -rf build && mkdir build",
