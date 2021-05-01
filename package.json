@@ -32,7 +32,7 @@
     "build": "npm run clean && npm run build-babel",
     "build-babel": "./node_modules/.bin/babel -d ./build ./src",
     "clean": "rm -rf build && mkdir build",
-    "start": "madir ./build/static/styles && mkdir ./build/images && cp ./src/static/styles/* ./build/static/styles &&cp ./src/images/* ./build/images && node ./build/server"
+    "start": "mkdir ./build/static/styles && mkdir ./build/images && cp ./src/static/styles/* ./build/static/styles &&cp ./src/images/* ./build/images && node ./build/server"
   },
   "devDependencies": {
     "@babel/preset-es2015": "^7.0.0-beta.53",
