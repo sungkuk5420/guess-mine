@@ -30,7 +30,7 @@
     "dev:server": "nodemon --exec babel-node src/server",
     "dev:assets": "gulp",
     "start": "nodemon --exec babel-node src/server",
-    "postinstall": "npm install -g @babel/core @babel/cli && nodemon --exec babel-node src/server"
+    "postinstall": "npm install @babel/core @babel/cli && nodemon --exec babel-node src/server"
   },
   "devDependencies": {
     "@babel/preset-es2015": "^7.0.0-beta.53",
