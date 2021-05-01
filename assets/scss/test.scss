@@ -11,6 +11,8 @@ body {
     border-radius: 20px;
     .user-li {
       position: relative;
+      
+      direction: rtl;
       img {
         opacity: 0.3;
         &.is-show {
@@ -96,19 +98,29 @@ body {
       .control-utill {
         display: flex;
         justify-content: space-between;
-        align-items: end;
+        align-items: center;
         height: 80px;
         border-radius: 20px;
-        padding: 20px;
+        padding: 10px;
         background-color: #fff;
         .control-time {
           // width: 20px;
           display: flex;
           flex-direction: column;
+          flex:none;
+          font-size:14px;
         }
         .control-chat {
+          flex:none;
+            display: flex;
+            input{
+              flex:1;
+              margin-right: 10px;
+              height: 33px;;
+            }
           button {
             height: 100%;
+            margin: 0;
           }
         }
       }

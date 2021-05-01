@@ -10,7 +10,7 @@ const app = express();
 app.set("views", join(__dirname, "../views"));
 app.set('view engine', 'ejs');
 app.use(logger("dev"));
-app.use(express.static(join(__dirname, "static")));
+app.use(express.static(__dirname));
 app.get("/", (req, res) =>
   res.render("home", { events: JSON.stringify(events) })
 );

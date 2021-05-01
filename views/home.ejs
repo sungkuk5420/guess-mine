@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="/styles/styles.css" />
+    <link rel="stylesheet" href="static/styles/styles.css" />
     <title>Guess Mine</title>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-92186889-5"></script>
     <script>
@@ -29,6 +29,7 @@
               <li class="user-li user-1">
                 <div class="user-info__text">
                   <div class="name"></div>
+                  <div class="chat-bubble">호랑이</div>
                   <div class="score"></div>
                 </div>
                 <img class="user-info__photo" src="./images/user-1.png" />
@@ -36,6 +37,7 @@
               <li class="user-li user-2">
                 <div class="user-info__text">
                   <div class="name"></div>
+                  <div class="chat-bubble">호랑이호랑이호랑이호랑이호랑이호랑이호랑이호랑이호랑이호랑이호랑이</div>
                   <div class="score"></div>
                 </div>
                 <img class="user-info__photo" src="./images/user-2.png" />
@@ -43,6 +45,7 @@
               <li class="user-li user-3">
                 <div class="user-info__text">
                   <div class="name"></div>
+                  <div class="chat-bubble"></div>
                   <div class="score"></div>
                 </div>
                 <img class="user-info__photo" src="./images/user-3.png" />
@@ -50,6 +53,7 @@
               <li class="user-li user-4">
                 <div class="user-info__text">
                   <div class="name"></div>
+                  <div class="chat-bubble"></div>
                   <div class="score"></div>
                 </div>
                 <img class="user-info__photo" src="./images/user-4.png" />
@@ -64,7 +68,7 @@
                   <div class="notifs3" id="jsNotifs3"></div>
                 </div>
                 <div class="control-chat">
-                  <form>
+                  <form class="chat__form" id="jsSendMsg">
                     <input type="text" />
                     <button type="submit">전송</button>
                   </form>
@@ -93,9 +97,10 @@
             </div>
             <ul class="user-right">
               <li class="user-li user-5">
-                <img class="user-info__photo" src="./images/user-5.png" />
+                <img class="user-info__photo" src="../images/user-5.png" />
                 <div class="user-info__text">
                   <div class="name"></div>
+                  <div class="chat-bubble"></div>
                   <div class="score"></div>
                 </div>
               </li>
@@ -103,6 +108,7 @@
                 <img class="user-info__photo" src="./images/user-6.png" />
                 <div class="user-info__text">
                   <div class="name"></div>
+                  <div class="chat-bubble"></div>
                   <div class="score"></div>
                 </div>
               </li>
@@ -110,6 +116,7 @@
                 <img class="user-info__photo" src="./images/user-7.png" />
                 <div class="user-info__text">
                   <div class="name"></div>
+                  <div class="chat-bubble"></div>
                   <div class="score"></div>
                 </div>
               </li>
@@ -117,6 +124,7 @@
                 <img class="user-info__photo" src="./images/user-8.png" />
                 <div class="user-info__text">
                   <div class="name"></div>
+                  <div class="chat-bubble"></div>
                   <div class="score"></div>
                 </div>
               </li>
@@ -133,7 +141,7 @@
         window.events = <%- events %>;
     </script>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/main.js">
+    <script src="static/js/main.js">
     </script>
 </body>
 

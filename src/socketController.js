@@ -138,7 +138,7 @@ const socketController = (socket, io) => {
     broadcast(events.newUser, { nickname });
     sendPlayerUpdate();
     if(!inProgress &&!gameStartFlag){
-      superBroadcast(events.allNotif,  "플레이어를 기다리고 있습니다. (1 / 6)");
+      superBroadcast(events.allNotif,  "플레이어를 기다리고 있습니다. (1 / 8)");
       superBroadcast(events.allNotif2,  ``);
       superBroadcast(events.allNotif3,  ``);
       if ((sockets.length > 1) ) {
@@ -171,6 +171,11 @@ const socketController = (socket, io) => {
   });
 
   socket.on(events.sendMsg, ({ message }) => {
+    console.log(socket.nickname)
+    if(!leader){
+      superBroadcast(events.newMsg, { message, nickname: socket.nickname });
+      return false;
+    }
     if((socket.id !== leader.id) && (message === word)) {
       superBroadcast(events.newMsg, {
         message: `승자는 ${socket.nickname}입니다. 답: ${word}`,
@@ -179,7 +184,7 @@ const socketController = (socket, io) => {
       addPoints(socket.id);
       endGame({startTimerSecond:3,waitTimeSecond:5});
     } else {
-      broadcast(events.newMsg, { message, nickname: socket.nickname });
+      superBroadcast(events.newMsg, { message, nickname: socket.nickname });
     }
   });
 
