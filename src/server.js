@@ -5,7 +5,7 @@ import logger from "morgan";
 import socketController from "./socketController";
 import events from "./events";
 
-const PORT = 5000;
+const PORT =  process.env.PORT || 5000;
 const app = express();
 app.set("views", join(__dirname, "../views"));
 app.set('view engine', 'ejs');
@@ -21,7 +21,7 @@ app.get("/test", (req, res) =>
 const handleListening = () =>
   console.log(`✅ Server running: http://localhost:${PORT}`);
 
-const server = app.listen( process.env.PORT || PORT, handleListening);
+const server = app.listen(PORT, handleListening);
 
 const io = socketIO.listen(server);
 
