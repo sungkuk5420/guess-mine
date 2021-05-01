@@ -150,9 +150,11 @@ export const handleNotLeaderNotif = ({ message, leader }) => {
 
 const addLeaderEffectToCanvas= ()=>{
   document.getElementById("jsCanvas").classList.add("is-leader")
+  document.getElementById("jsChat").classList.add("is-leader")
 }
 const removeLeaderEffectToCanvas= ()=>{
   document.getElementById("jsCanvas").classList.remove("is-leader")
+  document.getElementById("jsChat").classList.remove("is-leader")
 }
 const removeLeaderEffectToUserInfo= ()=>{
   const leaderDOM = document.querySelector(".user-li.is-leader")
