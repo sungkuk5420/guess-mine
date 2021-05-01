@@ -10,6 +10,7 @@ const colors = document.getElementsByClassName("jsColor");
 const mode = document.getElementById("jsMode");
 const clearButton = document.getElementById("clearButton");
 
+
 const INITIAL_COLOR = "#2c2c2c";
 setTimeout(() => {
   hendleWindowResize();
@@ -73,7 +74,6 @@ const strokePath = (x, y, width, height, color = null) => {
 };
 
 const onMouseMove = (event) => {
-  console.log("onMouseMove")
   const x = event.offsetX || (event.touches[0].pageX - event.touches[0].target.offsetLeft);
   const y = event.offsetY || (event.touches[0].pageY - event.touches[0].target.offsetTop);
   let width = canvas.width;
@@ -164,9 +164,20 @@ if (window) {
   window.addEventListener("resize", hendleWindowResize);
 }
 
+if(clearButton){
+  clearButton.addEventListener("click",function(){
+    resetCanvas();
+    getSocket().emit(window.events.fill, { color: "#ffffff" });
+  })
+}
 export const handleBeganPath = ({ x, y, width, height }) => beginPath(x, y, width, height);
 export const handleStrokedPath = ({ x, y, width, height, color }) => strokePath(x, y, width, height, color);
-export const handleFilled = ({ color }) => fill(color);
+export const handleFilled = ({ color }) => {
+  fill(color); 
+  if(color ==="#ffffff"){
+    resetCanvas();
+  }
+}
 
 export const disableCanvas = () => {
   canvas.removeEventListener("mousemove", onMouseMove);
