@@ -10,36 +10,52 @@ let gameTimerTimeout = null;// 시간초를 출력하는 타이머
 let countThreeSecondTimeout = null;// 시간초를 출력하는 타이머
 let gameEndDelayTimeout = null;// 시간초를 출력하는 타이머
 let gameStartFlag = false;
+let leaderCount = null;
 
-const chooseLeader = () => sockets[Math.floor(Math.random() * sockets.length)];
+
 const socketController = (socket, io) => {
   const broadcast = (event, data) => socket.broadcast.emit(event, data);
   const superBroadcast = (event, data) => io.emit(event, data);
   const sendPlayerUpdate = () => superBroadcast(events.playerUpdate, { sockets });
   const startGame = () => {
-    leader = chooseLeader();
-    word = chooseWord();
-    superBroadcast(events.gameStarted, { leader : leader.nickname });
-    io.to(leader.id).emit(events.leaderNotif, { word });
     gameStartFlag = true;
-    showGameTime(60);
-    gameStartCheck();
+    if(leaderCount===null){
+      const randomInt = Math.floor(Math.random() * sockets.length);
+      leaderCount = randomInt;
+    }else{
+      leaderCount++;
+    }
+    
+    if(sockets.length<=leaderCount){
+      leaderCount = 0;
+    }
+    leader = sockets[leaderCount]
+    console.log(leaderCount)
+    word = chooseWord();
+    if(leader){
+      superBroadcast(events.gameStarted, { leader : leader.nickname });
+      io.to(leader.id).emit(events.leaderNotif, { word });
+      showGameTime(60);
+      gameStartCheck();
+    }
   };
 
   const countThreeSeconds = (countData)=>{
     let count = countData;
-    countThreeSecondTimeout = setTimeout(() => {
-      console.log(count)
-      if (count > 0) {
-          superBroadcast(events.allNotif, `곧 게임이 시작됩니다. ${count}`);
-          superBroadcast(events.allNotif2,  ``);
-          superBroadcast(events.allNotif3,  ``);
-          count--;
-        countThreeSeconds(count);
-      } else {
-        startGame();
-      }
-    }, 1000);
+    
+      countThreeSecondTimeout = setTimeout(() => {
+        if (count > 0) {
+            superBroadcast(events.allNotif2,  `곧 게임이 시작됩니다. ${count}`);
+            superBroadcast(events.allNotif3,  ``);
+            count--;
+          countThreeSeconds(count);
+        } else {
+          if(!gameStartFlag){
+            superBroadcast(events.allNotif,  ``);
+            startGame();
+          }
+        }
+      }, 1000);
   }
 
   const showGameTime = (time) => {
@@ -101,12 +117,10 @@ const socketController = (socket, io) => {
     }
 
     gameStartFlag = false;
-    superBroadcast(events.allNotif2,  `${wait}초 후 게임이 재시작 됩니다.`);
+    superBroadcast(events.allNotif2,  ``);
     superBroadcast(events.allNotif3,  ``);
-    gameEndDelayTimeout = setTimeout(() => {
-      inProgress = true;
-      countThreeSeconds(start);
-    }, 1000*wait);
+    inProgress = true;
+    countThreeSeconds(wait+start);
   };
   const addPoints = id => {
     sockets = sockets.map(socket => {

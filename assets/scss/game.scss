@@ -18,6 +18,7 @@
     #jsCanvas {
         &.is-leader{
           border: 7px solid red;
+          z-index: 1;
         }
     }
     .controls {
