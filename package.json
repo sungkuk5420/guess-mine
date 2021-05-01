@@ -29,7 +29,6 @@
     "dev:server": "nodemon --exec babel-node src/server",
     "dev:assets": "gulp",
     "start": "nodemon --exec babel-node src/server"
-    // "heroku-postbuild": "gulp"
   },
   "devDependencies": {
     "@babel/preset-es2015": "^7.0.0-beta.53",
