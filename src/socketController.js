@@ -32,10 +32,12 @@ const socketController = (socket, io) => {
     leader = sockets[leaderCount]
     console.log(leaderCount)
     word = chooseWord();
-    superBroadcast(events.gameStarted, { leader : leader.nickname });
-    io.to(leader.id).emit(events.leaderNotif, { word });
-    showGameTime(60);
-    gameStartCheck();
+    if(leader){
+      superBroadcast(events.gameStarted, { leader : leader.nickname });
+      io.to(leader.id).emit(events.leaderNotif, { word });
+      showGameTime(60);
+      gameStartCheck();
+    }
   };
 
   const countThreeSeconds = (countData)=>{
