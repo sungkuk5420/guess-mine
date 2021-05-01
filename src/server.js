@@ -21,7 +21,7 @@ app.get("/test", (req, res) =>
 const handleListening = () =>
   console.log(`✅ Server running: http://localhost:${PORT}`);
 
-const server = app.listen(PORT, handleListening);
+const server = app.listen( process.env.PORT || PORT, handleListening);
 
 const io = socketIO.listen(server);
 
