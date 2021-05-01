@@ -8,8 +8,6 @@ const sendMsg = document.getElementById("jsSendMsg");
 const ctx = canvas.getContext("2d");
 const colors = document.getElementsByClassName("jsColor");
 const mode = document.getElementById("jsMode");
-const clearButton = document.getElementById("clearButton");
-
 
 const INITIAL_COLOR = "#2c2c2c";
 setTimeout(() => {
@@ -35,6 +33,7 @@ const startPainting = () => {
   getSocket().emit(window.events.changeGameStartingFlag, {
     status : true
   });
+  console.log("startPainting")
   ctx.beginPath();
   if(event.type === 'touchstart'){
     onMouseMove(event);
@@ -56,6 +55,7 @@ const beginPath = (x, y, width, height) => {
 };
 
 const strokePath = (x, y, width, height, color = null) => {
+  console.log("strokePath")
   if(width && height){
     x = canvas.width * (x/width);
     y = canvas.height * (y/height);
@@ -72,6 +72,7 @@ const strokePath = (x, y, width, height, color = null) => {
 };
 
 const onMouseMove = (event) => {
+  console.log("onMouseMove")
   const x = event.offsetX || (event.touches[0].pageX - event.touches[0].target.offsetLeft);
   const y = event.offsetY || (event.touches[0].pageY - event.touches[0].target.offsetTop);
   let width = canvas.width;
@@ -105,10 +106,10 @@ const handleColorClick = event => {
 const handleModeClick = () => {
   if (filling === true) {
     filling = false;
-    mode.innerText = "페인트로 변경";
+    mode.innerText = "Fill";
   } else {
     filling = true;
-    mode.innerText = "펜으로 변경";
+    mode.innerText = "Paint";
   }
 };
 
@@ -124,7 +125,6 @@ const fill = (color = null) => {
 const handleCanvasClick = () => {
   if (filling) {
     fill();
-    handleModeClick();
     getSocket().emit(window.events.fill, { color: ctx.fillStyle });
   }
 };
@@ -162,20 +162,9 @@ if (window) {
   window.addEventListener("resize", hendleWindowResize);
 }
 
-if(clearButton){
-  clearButton.addEventListener("click",function(){
-    resetCanvas();
-    getSocket().emit(window.events.fill, { color: "#ffffff" });
-  })
-}
 export const handleBeganPath = ({ x, y, width, height }) => beginPath(x, y, width, height);
 export const handleStrokedPath = ({ x, y, width, height, color }) => strokePath(x, y, width, height, color);
-export const handleFilled = ({ color }) => {
-  fill(color); 
-  if(color ==="#ffffff"){
-    resetCanvas();
-  }
-}
+export const handleFilled = ({ color }) => fill(color);
 
 export const disableCanvas = () => {
   canvas.removeEventListener("mousemove", onMouseMove);

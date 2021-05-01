@@ -21,9 +21,7 @@
 
 <body>
     <div class="loginBox">
-        <form id="jsLogin"><input placeholder="닉네임 입력" type="text" />
-          <button type="submit">확인</button>
-        </form>
+        <form id="jsLogin"><input placeholder="닉네임 입력" type="text" /></form>
     </div>
     <div class="gameContainer" id="jsGame">
         <div class="game main" id="jsMain">
@@ -63,9 +61,6 @@
             </ul>
             <div class="game-main">
               <canvas class="canvas" id="jsCanvas"></canvas>
-              <div class="chat" id="jsChat">
-                <ul class="chat__messages" id="jsMessages"></ul>
-              </div>
               <div class="control-utill">
                 <div class="control-time">
                   <div class="notifs1" id="jsNotifs"></div>
@@ -82,9 +77,9 @@
               <div class="controls control-palette" id="jsControls">
                 
                 <div class="palette-button">
-                    <button id="jsMode">페인트로 변경</button>
-                     <button id="clearButton">전체 지우기</button>
-<!--                    <button>포기하기</button> -->
+                    <button id="jsMode">Fill</button>
+                    <!-- <button>전체 지우기</button>
+                    <button>포기하기</button> -->
                   </div>
                   <ul class="colors palette-color">
                       <li class="color jsColor" style="background-color:rgb(0, 0, 0);"></li\>
@@ -134,6 +129,9 @@
                 </div>
               </li>
             </ul>
+            <div class="chat" id="jsChat">
+                <ul class="chat__messages" id="jsMessages"></ul>
+            </div>
           </div>
     </div>
     <script>

@@ -4,10 +4,11 @@ const body = document.querySelector("body");
 const loginForm = document.getElementById("jsLogin");
 const resetNickname = document.getElementById("jsResetNickname");
 
+const NICKNAME = "nickname";
 const LOGGED_OUT = "loggedOut";
 const LOGGED_IN = "loggedIn";
 
-window.nickname =null;
+const nickname = localStorage.getItem(NICKNAME);
 
 // eslint-disable-next-line no-undef
 const socket = io("/");
@@ -16,11 +17,11 @@ const logIn = nickname => {
   initSockets(socket);
 };
 
-if (window.nickname === null) {
+if (nickname === null) {
   body.className = LOGGED_OUT;
 } else {
   body.className = LOGGED_IN;
-  logIn(window.nickname);
+  logIn(nickname);
 }
 
 const handleFormSubmit = e => {
@@ -28,20 +29,20 @@ const handleFormSubmit = e => {
   const input = loginForm.querySelector("input");
   const { value } = input;
   input.value = "";
-  window.nickname = value
+  localStorage.setItem(NICKNAME, value);
   body.className = LOGGED_IN;
   logIn(value);
 };
 
-// const handleResetNickname = e => {
-//   localStorage.removeItem(NICKNAME);
-//   location.reload();
-// }
+const handleResetNickname = e => {
+  localStorage.removeItem(NICKNAME);
+  location.reload();
+}
 
 if (loginForm) {
   loginForm.addEventListener("submit", handleFormSubmit);
 }
 
-// if(resetNickname) {
-//   resetNickname.addEventListener("click", handleResetNickname);
-// }
+if(resetNickname) {
+  resetNickname.addEventListener("click", handleResetNickname);
+}

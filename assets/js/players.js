@@ -124,7 +124,8 @@ export const handleGameStarted = ({ leader }) => {
   removeLeaderEffectToUserInfo();
   addLeaderEffectToUserInfo(leader);
   
-    if (window.nickname != leader) {
+  const nickname = localStorage.getItem("nickname");
+    if (nickname != leader) {
       removeLeaderEffectToCanvas();
     }else{
       addLeaderEffectToCanvas();
@@ -139,9 +140,9 @@ export const handleLeaderNotif = ({ word }) => {
 };
 
 export const handleNotLeaderNotif = ({ message, leader }) => {
-  
+  const nickname = localStorage.getItem("nickname");
   if (leader) {
-    if (window.nickname != leader.nickname) {
+    if (nickname != leader.nickname) {
       notifs.innerText = `${message}`;
     }
   }
@@ -149,11 +150,9 @@ export const handleNotLeaderNotif = ({ message, leader }) => {
 
 const addLeaderEffectToCanvas= ()=>{
   document.getElementById("jsCanvas").classList.add("is-leader")
-  document.getElementById("jsChat").classList.add("is-leader")
 }
 const removeLeaderEffectToCanvas= ()=>{
   document.getElementById("jsCanvas").classList.remove("is-leader")
-  document.getElementById("jsChat").classList.remove("is-leader")
 }
 const removeLeaderEffectToUserInfo= ()=>{
   const leaderDOM = document.querySelector(".user-li.is-leader")

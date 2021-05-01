@@ -47,10 +47,10 @@ const handleSendMsg = event => {
 };
 
 export const handleNewMessage = ({ message, nickname }) =>{
-  // const myNickname = localStorage.getItem("nickname");
-  // if(myNickname !== nickname ){
+  const myNickname = localStorage.getItem("nickname");
+  if(myNickname !== nickname ){
     appendMsg(message, nickname);
-  // }
+  }
 }
 
 if (sendMsg) {
