@@ -29,10 +29,8 @@
   "scripts": {
     "dev:server": "nodemon --exec babel-node src/server",
     "dev:assets": "gulp",
-    "clean": "rm -rf build && mkdir build",
-    "build-babel": "babel -d ./build ./src -s",
-    "build": "npm run clean && npm run build-babel",
-    "start": "nodemon --exec babel-node src/server"
+    "start": "nodemon --exec babel-node src/server",
+    "postinstall": "npm install -g @babel/core @babel/cli"
   },
   "devDependencies": {
     "@babel/preset-es2015": "^7.0.0-beta.53",
