@@ -27,7 +27,9 @@
   },
   "scripts": {
     "dev:server": "nodemon --exec babel-node src/server",
-    "dev:assets": "gulp"
+    "dev:assets": "gulp",
+    "start": "nodemon --exec babel-node src/server",
+    "postinstall": "gulp default"
   },
   "devDependencies": {
     "@babel/preset-es2015": "^7.0.0-beta.53",
